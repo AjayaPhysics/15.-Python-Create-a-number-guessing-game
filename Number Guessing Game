@@ -1,0 +1,37 @@
+import random
+from termcolor import colored
+
+def number_guessing_game():
+    print(colored("====================================", "cyan"))
+    print(colored("      Welcome to the Number Guessing Game!", "yellow", attrs=["bold"]))
+    print(colored("====================================", "cyan"))
+    print(colored("I'm thinking of a number between 1 and 100.", "green"))
+    print(colored("Can you guess what it is?", "green"))
+
+    # Generate a random number between 1 and 100
+    target_number = random.randint(1, 100)
+    attempts = 0
+
+    while True:
+        try:
+            # Get the user's guess
+            guess = int(input(colored("\nEnter your guess: ", "blue")))
+            attempts += 1
+
+            # Check if the guess is correct
+            if guess == target_number:
+                print(colored("\n====================================", "cyan"))
+                print(colored(f"🎉 Congratulations! You guessed the number in {attempts} attempts. 🎉", "magenta", attrs=["bold"]))
+                print(colored("====================================", "cyan"))
+                break
+            elif guess < target_number:
+                print(colored("🔥 Too low! Try again.", "red"))
+            else:
+                print(colored("❄️ Too high! Try again.", "blue"))
+        except ValueError:
+            print(colored("⚠️ Please enter a valid number.", "yellow"))
+
+    print(colored("\nThanks for playing! See you next time!", "green", attrs=["bold"]))
+
+if __name__ == "__main__":
+    number_guessing_game()
